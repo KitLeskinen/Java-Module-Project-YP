@@ -10,21 +10,25 @@ public class Calculator {
         scanner.useLocale(Locale.US);
         System.out.println("Введите название товара или напишите \"завершить\"");
         while(true){
-
-            String itemName = scanner.next();
+            String itemName = scanner.nextLine();
             if(itemName.equalsIgnoreCase("завершить")){
                 break;
             }
-            System.out.println("Введите стоимость товара");
-            boolean isDouble = scanner.hasNextDouble();
-            if(isDouble){
-                items.add(new Item(itemName, scanner.nextDouble()));
-                System.out.println(String.format("Товар %s успешно добавлен!\n", itemName));
-                System.out.println("Напишите название следующего товара или напишите \"завершить\"");
-
-            } else if(scanner.next().equalsIgnoreCase("завершить")){
-                break;
-            } else {
+            System.out.println(String.format("Введите стоимость товара \"%s\"", itemName));
+            try{
+                String inputPrice = scanner.nextLine();
+                if(inputPrice.equalsIgnoreCase("завершить")){
+                    break;
+                }
+                Double itemPrice = Double.parseDouble(inputPrice.replace(",","."));
+                if(itemPrice > 0){
+                    items.add(new Item(itemName, itemPrice));
+                    System.out.println(String.format("Товар %s успешно добавлен!\n", itemName));
+                    System.out.println("Напишите название следующего товара или напишите \"завершить\"");
+                } else {
+                    System.out.println("Стоимость товара не может быть отрицательной или равна 0, напишите название товара или напишите \"завершить\"");
+                }
+            } catch (NumberFormatException e){
                 System.out.println("Стоимость введена неверно, напишите название товара или напишите \"завершить\"");
             }
         }
@@ -36,7 +40,7 @@ public class Calculator {
             total += item.price;
         }
         Double separatedPrice = total/visitors;
-        System.out.println(String.format("Каждый должен заплатить %.2f %s", separatedPrice, new Formatter().getCase(separatedPrice)));
+        System.out.println(String.format("Каждый из %s должен заплатить %.2f %s", visitors, separatedPrice, new Formatter().getCase(separatedPrice)));
     }
 
     public void showItems() {
