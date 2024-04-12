@@ -24,7 +24,10 @@ public class Main {
             } catch (InputMismatchException e){
                 System.out.println("Введите количество человек, число должно быть целым");
             }
+            scanner.close();
         }
+
+
 
         Calculator calculator = new Calculator();
         // узнаем у пользователя что было заказано

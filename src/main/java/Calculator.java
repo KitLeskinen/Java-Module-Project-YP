@@ -6,10 +6,10 @@ public class Calculator {
     ArrayList<Item> items = new ArrayList<>();
 
     public void addItems() {
+        System.out.println("Введите название товара или напишите \"завершить\"");
         Scanner scanner = new Scanner(System.in);
         scanner.useLocale(Locale.US);
-        System.out.println("Введите название товара или напишите \"завершить\"");
-        while(true){
+           while(true){
             String itemName = scanner.nextLine();
             if(itemName.equalsIgnoreCase("завершить")){
                 break;
