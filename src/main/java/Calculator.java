@@ -9,7 +9,7 @@ public class Calculator {
         System.out.println("Введите название товара или напишите \"завершить\"");
         Scanner scanner = new Scanner(System.in);
         scanner.useLocale(Locale.US);
-           while(true){
+        while(true){
             String itemName = scanner.nextLine();
             if(itemName.equalsIgnoreCase("завершить")){
                 break;

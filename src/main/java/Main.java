@@ -1,4 +1,5 @@
 import java.util.InputMismatchException;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class Main {
@@ -12,7 +13,7 @@ public class Main {
 
         while(true){
             Scanner scanner = new Scanner(System.in);
-            try {
+            try{
                 visitors = scanner.nextInt();
                 if(visitors > 1){
                     break;
@@ -21,10 +22,9 @@ public class Main {
                 } else {
                     System.out.println("Число не может быть нулем или отрицательным");
                 }
-            } catch (InputMismatchException e){
+            } catch (NoSuchElementException e){
                 System.out.println("Введите количество человек, число должно быть целым");
             }
-            scanner.close();
         }
 
 
